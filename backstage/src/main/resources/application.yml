@@ -1,0 +1,30 @@
+spring:
+  profiles:
+    active: test
+server:
+  port: 90001
+
+logging:
+  config: classpath:logback-boot.xml
+  path: ./logs
+  level: debug
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath*:cn/honghu/blog/backstage/dao/**/*.xml
+
+mapper:
+  mappers: tk.mybatis.mapper.common.Mapper,tk.mybatis.mapper.common.MySqlMapper
+  not-empty: false
+  identity: MYSQL
+  style: camelhumpandlowercase
+  safe-delete: true
+  wrap-keyword: "`{0}`"
+pagehelper:
+  offset-as-page-num: true
+  row-bounds-with-count: true
+  reasonable: false
+  helper-dialect: mysql
+  support-methods-arguments: true
+  params: count=countSql
